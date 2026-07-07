@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>ویرایش خبر</title>
+
+<style>
+
+body{
+    font-family:Tahoma;
+    background:#f4f4f4;
+    margin:40px;
+}
+
+form{
+    background:white;
+    padding:20px;
+    border-radius:10px;
+    box-shadow:0 0 10px #ddd;
+}
+
+input,textarea{
+    width:100%;
+    padding:10px;
+    margin:10px 0;
+    box-sizing:border-box;
+}
+
+button{
+    background:#0b5d3b;
+    color:white;
+    border:none;
+    padding:12px 25px;
+    border-radius:5px;
+    cursor:pointer;
+}
+
+img{
+    width:250px;
+    border-radius:8px;
+    margin:15px 0;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>ویرایش خبر</h1>
+
+<form method="POST" enctype="multipart/form-data">
+
+<label>عنوان خبر</label>
+
+<input
+type="text"
+name="title"
+value="{{ news.title }}"
+required>
+
+<label>متن خبر</label>
+
+<textarea
+name="text"
+rows="6"
+required>{{ news.text }}</textarea>
+
+{% if news.image %}
+
+<p>عکس فعلی:</p>
+
+<img src="{{ url_for('static', filename='uploads/news/' + news.image) }}">
+
+{% endif %}
+
+<label>انتخاب عکس جدید (اختیاری)</label>
+
+<input
+type="file"
+name="image">
+
+<br><br>
+
+<button type="submit">
+
+ذخیره تغییرات
+
+</button>
+
+</form>
+
+<br>
+
+<a href="/admin/news">⬅ بازگشت به مدیریت اخبار</a>
+
+</body>
+
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>مدیریت پیام‌ها</title>
+
+<style>
+
+body{
+    font-family:Tahoma;
+    background:#f4f4f4;
+    margin:40px;
+}
+
+h1{
+    color:#0b5d3b;
+}
+
+.card{
+    background:white;
+    padding:20px;
+    margin-bottom:20px;
+    border-radius:10px;
+    box-shadow:0 0 10px #ddd;
+}
+
+.card h3{
+    margin-top:0;
+    color:#0b5d3b;
+}
+
+.card p{
+    line-height:2;
+}
+
+.delete-btn{
+    display:inline-block;
+    margin-top:15px;
+    background:#d32f2f;
+    color:white;
+    padding:10px 18px;
+    text-decoration:none;
+    border-radius:5px;
+}
+
+.delete-btn:hover{
+    background:#b71c1c;
+}
+
+.back-btn{
+    display:inline-block;
+    margin-bottom:20px;
+    background:#0b5d3b;
+    color:white;
+    padding:10px 18px;
+    text-decoration:none;
+    border-radius:5px;
+}
+
+.back-btn:hover{
+    background:#08452c;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<a href="/admin" class="back-btn">
+بازگشت به پنل مدیریت
+</a>
+
+<h1>پیام‌های کاربران</h1>
+
+{% if messages %}
+
+{% for item in messages %}
+
+<div class="card">
+
+<h3>{{ item.fullname }}</h3>
+
+<p><strong>شماره تماس:</strong> {{ item.phone }}</p>
+
+<p><strong>موضوع:</strong> {{ item.subject }}</p>
+
+<p>{{ item.text }}</p>
+
+<a
+class="delete-btn"
+href="/admin/messages/delete/{{ item.id }}"
+onclick="return confirm('آیا از حذف این پیام مطمئن هستید؟');">
+
+حذف پیام
+
+</a>
+
+</div>
+
+{% endfor %}
+
+{% else %}
+
+<p>هنوز پیامی ثبت نشده است.</p>
+
+{% endif %}
+
+</body>
+
+</html>

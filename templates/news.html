@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>اخبار حوزه علمیه آیت‌الله قاضی</title>
+
+<style>
+
+body{
+    font-family:Tahoma;
+    background:#f5f5f5;
+    margin:0;
+}
+
+header{
+    background:#0b5d3b;
+    color:white;
+    text-align:center;
+    padding:20px;
+}
+
+nav{
+    background:#c9a227;
+    padding:15px;
+    text-align:center;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    margin:15px;
+    font-weight:bold;
+}
+
+.container{
+    width:85%;
+    margin:auto;
+    padding:20px;
+}
+
+.news-box{
+    background:white;
+    padding:20px;
+    margin-bottom:20px;
+    border-radius:8px;
+    box-shadow:0 0 8px #ddd;
+}
+
+h2{
+    color:#0b5d3b;
+}
+
+footer{
+    background:#0b5d3b;
+    color:white;
+    text-align:center;
+    padding:20px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<h1>اخبار حوزه علمیه آیت‌الله قاضی</h1>
+
+</header>
+
+<nav>
+
+<a href="/">صفحه اصلی</a>
+<a href="/about">درباره حوزه</a>
+<a href="/news">اخبار</a>
+<a href="/contact">تماس با ما</a>
+<a href="/login">ورود مدیر</a>
+
+</nav>
+
+<div class="container">
+
+{% if news %}
+
+{% for item in news %}
+
+<div class="news-box">
+
+<h2>{{ item.title }}</h2>
+
+<p>{{ item.text }}</p>
+
+</div>
+
+{% endfor %}
+
+{% else %}
+
+<h3>هنوز خبری ثبت نشده است.</h3>
+
+{% endif %}
+
+</div>
+
+<footer>
+
+تمامی حقوق محفوظ است © حوزه علمیه آیت‌الله قاضی
+
+</footer>
+
+</body>
+</html>

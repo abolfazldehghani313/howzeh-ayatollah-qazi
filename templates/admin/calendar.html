@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>مدیریت تقویم آموزشی</title>
+
+<style>
+
+body{
+    font-family:Tahoma;
+    background:#f4f4f4;
+    margin:40px;
+}
+
+h1{
+    color:#0b5d3b;
+}
+
+form{
+    background:white;
+    padding:20px;
+    border-radius:10px;
+    margin-bottom:30px;
+    box-shadow:0 0 10px #ddd;
+}
+
+input,textarea{
+    width:100%;
+    padding:10px;
+    margin:10px 0;
+    box-sizing:border-box;
+    border:1px solid #ccc;
+    border-radius:5px;
+}
+
+button{
+    background:#0b5d3b;
+    color:white;
+    border:none;
+    padding:12px 25px;
+    cursor:pointer;
+    border-radius:5px;
+}
+
+button:hover{
+    background:#08452c;
+}
+
+.card{
+    background:white;
+    padding:20px;
+    margin-top:20px;
+    border-radius:10px;
+    box-shadow:0 0 10px #ddd;
+}
+
+.card h3{
+    color:#0b5d3b;
+}
+
+.delete-btn{
+    display:inline-block;
+    margin-top:15px;
+    background:#d32f2f;
+    color:white;
+    padding:10px 18px;
+    text-decoration:none;
+    border-radius:5px;
+}
+
+.delete-btn:hover{
+    background:#b71c1c;
+}
+
+.info{
+    color:#777;
+    margin-bottom:20px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>مدیریت تقویم آموزشی</h1>
+
+<p class="info">
+تعداد برنامه‌ها:
+<b>{{ events|length }}</b>
+</p>
+
+<form method="POST">
+
+<label>عنوان برنامه</label>
+<input type="text" name="title" required>
+
+<label>تاریخ</label>
+<input type="text" name="date" placeholder="1405/07/15" required>
+
+<label>ساعت</label>
+<input type="text" name="time">
+
+<label>مکان</label>
+<input type="text" name="place">
+
+<label>توضیحات</label>
+<textarea name="description" rows="5"></textarea>
+
+<button type="submit">
+ثبت برنامه
+</button>
+
+</form>
+
+<hr>
+
+<h2>برنامه‌های ثبت شده</h2>
+
+{% if events %}
+
+{% for item in events %}
+
+<div class="card">
+
+<h3>{{ item.title }}</h3>
+
+<p><strong>تاریخ:</strong> {{ item.date }}</p>
+
+<p><strong>ساعت:</strong> {{ item.time }}</p>
+
+<p><strong>مکان:</strong> {{ item.place }}</p>
+
+<p><strong>توضیحات:</strong></p>
+
+<p>{{ item.description }}</p>
+
+<a class="delete-btn"
+href="/admin/calendar/delete/{{ item.id }}"
+onclick="return confirm('آیا از حذف این برنامه مطمئن هستید؟');">
+حذف برنامه
+</a>
+
+</div>
+
+{% endfor %}
+
+{% else %}
+
+<p>هنوز هیچ برنامه‌ای ثبت نشده است.</p>
+
+{% endif %}
+
+</body>
+
+</html>
